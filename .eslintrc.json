@@ -1,0 +1,21 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 2019
+    },
+    "env": {
+        "es6": true
+    },
+    "overrides": [
+        {
+            "files": [
+                "src/server/**",
+                "scripts/server.js",
+                "jest.config.js",
+                "lwc-services.config.js"
+            ],
+            "env": {
+                "node": true
+            }
+        }
+    ]
+}

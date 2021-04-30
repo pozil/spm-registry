@@ -1,0 +1,71 @@
+{
+    "name": "spm-registry",
+    "version": "1.0.0",
+    "author": "pozil",
+    "private": true,
+    "description": "A Salesforce Package Manager (SPM) registry",
+    "license": "CC0-1.0",
+    "dependencies": {
+        "compression": "^1.7.4",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "helmet": "^4.5.0",
+        "pg": "^8.6.0",
+        "puppeteer": "^9.0.0"
+    },
+    "devDependencies": {
+        "eslint": "^7.25.0",
+        "husky": "^6.0.0",
+        "lint-staged": "^10.5.4",
+        "lwc-services": "^3.0.4",
+        "npm-run-all": "^4.1.5",
+        "prettier": "^2.2.1"
+    },
+    "scripts": {
+        "start": "node src/server/api.js",
+        "build": "lwc-services build -m production",
+        "build:development": "lwc-services build",
+        "lint": "eslint ./src/**/*.js",
+        "prettier": "prettier --write \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
+        "prettier:verify": "prettier --list-different \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
+        "serve": "run-p serve:client serve:api",
+        "serve:api": "node src/server/api.js",
+        "serve:client": "node scripts/server.js",
+        "test": "lwc-services test:unit",
+        "test:coverage": "lwc-services test:unit --coverage",
+        "test:debug": "lwc-services test:unit --debug",
+        "test:watch": "lwc-services test:unit --watch",
+        "watch": "run-p watch:client watch:server",
+        "watch:client": "lwc-services watch",
+        "watch:server": "nodemon",
+        "postinstall": "husky install",
+        "precommit": "lint-staged"
+    },
+    "engines": {
+        "node": ">=10.13.0",
+        "npm": ">=6.4.1",
+        "yarn": ">=1.9.4"
+    },
+    "lint-staged": {
+        "**/*.{css,html,js,json,md,ts,yaml,yml}": [
+            "prettier --write"
+        ],
+        "./src/**/*.js": [
+            "eslint"
+        ]
+    },
+    "nodemonConfig": {
+        "watch": [
+            "src/server/**/*.js"
+        ],
+        "ext": "js",
+        "ignore": [
+            "src/**/*.spec.js",
+            "src/**/*.test.js"
+        ],
+        "exec": "node ./src/server/api.js"
+    },
+    "homepage": "https://github.com/pozil/spm",
+    "repository": "pozil/spm",
+    "bugs": "https://github.com/pozil/spm/issues"
+}
