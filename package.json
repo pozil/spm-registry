@@ -22,7 +22,7 @@
         "prettier": "^2.2.1"
     },
     "scripts": {
-        "start": "node src/server/api.js",
+        "start": "node src/server/server.js",
         "build": "lwc-services build -m production",
         "build:development": "lwc-services build",
         "lint": "eslint ./src/**/*.js",

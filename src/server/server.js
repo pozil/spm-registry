@@ -18,9 +18,11 @@ if (!Configuration.isValid()) {
 const pool = new Pool(Configuration.getDatabaseConfig());
 
 // Configure server
+const DIST_DIR = path.join(__dirname, '../../dist');
 const app = express();
 app.use(helmet());
 app.use(compression());
+app.use(express.static(DIST_DIR));
 
 // Add REST resources
 const packageRest = new PackageRestResource(pool);
