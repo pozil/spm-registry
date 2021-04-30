@@ -35,8 +35,7 @@ app.post('/api/v1/package-version/:versionId', (req, res) => {
 });
 
 // Start server
-const HOST = process.env.API_HOST || 'localhost';
-const PORT = process.env.API_PORT || 3002;
+const PORT = process.env.PORT || process.env.API_PORT || 3002;
 app.listen(PORT, () =>
-    console.log(`✅  API Server started: http://${HOST}:${PORT}`)
+    console.log(`✅  API Server started: http://localhost:${PORT}`)
 );
