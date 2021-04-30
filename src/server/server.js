@@ -1,9 +1,10 @@
-const compression = require('compression');
-const helmet = require('helmet');
-const express = require('express');
+const compression = require('compression'),
+    helmet = require('helmet'),
+    express = require('express'),
+    path = require('path'),
+    PackageRestResource = require('./package/packageRestResource'),
+    Configuration = require('./utils/configuration.js');
 const { Pool } = require('pg');
-const PackageRestResource = require('./package/packageRestResource');
-const Configuration = require('./utils/configuration.js');
 
 // Load and check config
 require('dotenv').config();
