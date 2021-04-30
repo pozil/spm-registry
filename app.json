@@ -1,0 +1,29 @@
+{
+    "name": "SPM Registry",
+    "description": "Salesforce Package Manager (SPM) Registry",
+    "repository": "https://github.com/pozil/spm-registry",
+    "keywords": ["spm", "salesforce", "package", "manager", "registry"],
+    "env": {
+        "DATABASE_REQUIRES_SSL": {
+            "description": "Whether your database requires a SSL connection",
+            "value": "false",
+            "required": true
+        },
+        "SF_LOGIN_URL": {
+            "description": "My domain base URL of your Salesforce org",
+            "value": "https://my-org.lightning.force.com",
+            "required": true
+        },
+        "SF_USERNAME": {
+            "description": "Salesforce username",
+            "value": "",
+            "required": true
+        },
+        "SF_PASSWORD": {
+            "description": "Salesforce password",
+            "value": "",
+            "required": true
+        }
+    },
+    "success_url": "/"
+}
