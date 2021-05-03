@@ -3,7 +3,7 @@ const Configuration = require('../utils/configuration');
 
 class PackageInfoParser {
     static async parsePackageInfo(packageId) {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
         const page = await browser.newPage();
 
         // Log In
