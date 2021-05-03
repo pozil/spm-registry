@@ -6,7 +6,7 @@
     "env": {
         "DATABASE_REQUIRES_SSL": {
             "description": "Whether your database requires a SSL connection",
-            "value": "false",
+            "value": "true",
             "required": true
         },
         "SF_LOGIN_URL": {
