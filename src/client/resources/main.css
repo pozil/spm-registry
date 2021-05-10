@@ -1,0 +1,17 @@
+/* CSS HEX */
+
+html, body, #main {
+  height: 100%;
+}
+
+body {
+  --royal-blue-dark: #00296bff;
+  --dark-cornflower-blue: #003f88ff;
+  --usafa-blue: #00509dff;
+  --mikado-yellow: #fdc500ff;
+  --cyber-yellow: #ffd500ff;
+  
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}

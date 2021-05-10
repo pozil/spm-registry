@@ -1,0 +1,22 @@
+<template>
+    <header>
+        <div class="title-container">
+            <div class="title">SPM</div>
+            <div class="subtitle">Salesforce Package Manager</div>
+        </div>
+        <div class="search-container">
+            <form onsubmit={handleSearchSubmit}>
+                <input
+                    value={searchTerm}
+                    oninput={handleSearchTermInput}
+                    placeholder="Search packages"
+                />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+    <div class="announcement-banner">
+        🚧 The registry service is operational but this website is still under
+        construction (we're working on a shiny design) 🚧
+    </div>
+</template>

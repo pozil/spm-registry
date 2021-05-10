@@ -1,0 +1,50 @@
+header {
+    background-color: var(--cyber-yellow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
+}
+
+.search-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.search-container input,
+.search-container button {
+    font-size: 1rem;
+}
+
+.search-container input {
+    color: var(--dark-cornflower-blue);
+    font-family: 'Courier New', Courier, monospace;
+    width: 20rem;
+    padding: 1rem;
+}
+
+.search-container button {
+    background-color: var(--dark-cornflower-blue);
+    color: #ffffff;
+    font-weight: bold;
+    letter-spacing: 0.05rem;
+    padding: 1rem 2rem;
+}
+
+.title-container {
+    color: var(--royal-blue-dark);
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: 1rem;
+}
+
+.announcement-banner {
+    background-color: var(--usafa-blue);
+    text-align: center;
+    color: var(--cyber-yellow);
+    padding: 0.5rem;
+}

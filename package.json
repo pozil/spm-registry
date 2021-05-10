@@ -29,7 +29,7 @@
         "prettier": "prettier --write \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
         "prettier:verify": "prettier --list-different \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
         "serve": "run-p serve:client serve:api",
-        "serve:api": "node src/server/api.js",
+        "serve:api": "node src/server/server.js",
         "serve:client": "node scripts/server.js",
         "test": "lwc-services test:unit",
         "test:coverage": "lwc-services test:unit --coverage",
@@ -63,7 +63,7 @@
             "src/**/*.spec.js",
             "src/**/*.test.js"
         ],
-        "exec": "node ./src/server/api.js"
+        "exec": "node ./src/server/server.js"
     },
     "homepage": "https://github.com/pozil/spm",
     "repository": "pozil/spm",
