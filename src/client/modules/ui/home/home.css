@@ -1,0 +1,25 @@
+:host {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+h3 {
+    margin-top: 3rem;
+}
+
+code {
+    font-family: monospace;
+    border-left: 3px solid var(--usafa-blue);
+    padding: 0.25rem 0.25rem 0.25rem 0.5rem;
+    margin-left: 2rem;
+}
+
+a,
+a:visited {
+    color: var(--usafa-blue);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}

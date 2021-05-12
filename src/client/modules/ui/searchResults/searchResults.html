@@ -1,0 +1,27 @@
+<template>
+    <template if:true={hasResults}>
+        <h3>{resultStatsLabel}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Publisher</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={results.packages} for:item="pkg">
+                    <tr key={pkg.name}>
+                        <td>{pkg.name}</td>
+                        <td>{pkg.description}</td>
+                        <td>{pkg.publisher}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </template>
+
+    <template if:false={hasResults}>
+        <h3>No result found for <strong>{searchTerm}</strong></h3>
+    </template>
+</template>

@@ -4,12 +4,8 @@
     flex-flow: column;
 }
 
-.body {
+section {
     padding: 2rem;
     flex-grow: 1;
     font-size: large;
-}
-
-code {
-    font-family: monospace;
 }

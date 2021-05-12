@@ -1,8 +1,56 @@
 const { Version } = require('../utils/version');
 
+const PAGE_SIZE = 2;
+
 class PackageService {
     constructor(pool) {
         this.pool = pool;
+    }
+
+    /**
+     * Search for packages
+     * @param {string} searchTerm
+     * @param {number} pageNumber
+     * @returns paginated list of packages as { packages: [], totalCount: number, pageNumber: number }
+     */
+    async search(rawSearchTerm, pageNumber) {
+        const searchTerm = `%${rawSearchTerm.replace('%', '')}%`;
+        const offset = pageNumber * PAGE_SIZE;
+        const client = await this.pool.connect();
+
+        try {
+            // Search for packages
+            const dbRowResult = await client.query(
+                `SELECT pd.name, pd.publisher, pd.description 
+FROM package_definitions pd 
+WHERE pd.name ILIKE $1 OR pd.publisher ILIKE $1 
+ORDER BY pd.name 
+LIMIT $2 OFFSET $3`,
+                [searchTerm, PAGE_SIZE, offset]
+            );
+
+            // Prepare results
+            const paginatedResults = {
+                packages: dbRowResult.rows,
+                totalCount: dbRowResult.rowCount,
+                pageNumber
+            };
+
+            // Count other packages if results exceed page size
+            if (pageNumber > 0 || dbRowResult.rowCount == PAGE_SIZE) {
+                const dbCountResult = await client.query(
+                    `SELECT COUNT(*) as rowCount
+FROM package_definitions pd 
+WHERE pd.name ILIKE $1 OR pd.publisher ILIKE $1`,
+                    [searchTerm]
+                );
+                paginatedResults.totalCount = dbCountResult.rows[0].rowCount;
+            }
+
+            return paginatedResults;
+        } finally {
+            client.release();
+        }
     }
 
     /**

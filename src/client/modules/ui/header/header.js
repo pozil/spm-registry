@@ -9,5 +9,9 @@ export default class Header extends LightningElement {
 
     handleSearchSubmit(event) {
         event.preventDefault();
+        if (this.searchTerm && this.searchTerm.trim() !== '') {
+            const detail = { key: this.searchTerm, page: 0 };
+            this.dispatchEvent(new CustomEvent('search', { detail }));
+        }
     }
 }
