@@ -1,5 +1,5 @@
 <template>
-    <ui-header onsearch={handleSearch}></ui-header>
+    <ui-header ongohome={handleGoHome} onsearch={handleSearch}></ui-header>
     <section>
         <template if:true={isHomePage}>
             <ui-home></ui-home>
@@ -8,7 +8,13 @@
             <ui-search-results
                 search-term={searchTerm}
                 results={searchResults}
+                onselectpackage={handleSelectPackage}
             ></ui-search-results>
+        </template>
+        <template if:true={isPackageDefinitionPage}>
+            <ui-package-definition
+                package-definition={packageDefinition}
+            ></ui-package-definition>
         </template>
     </section>
     <ui-footer></ui-footer>

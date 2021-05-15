@@ -1,0 +1,26 @@
+<template>
+    <h2>{packageDefinition.name}</h2>
+    <div class="columns">
+        <div class="definition-info">
+            <p>Publisher: {packageDefinition.publisher}</p>
+            <h3>Description</h3>
+            <textarea readonly>{packageDefinition.description}</textarea>
+        </div>
+        <div class="version-info">
+            <p if:true={packageDefinition.stableVersion}>
+                Latest stable version in registry:
+                {packageDefinition.stableVersion}
+            </p>
+            <p if:true={packageDefinition.betaVersion}>
+                Latest beta version in registry: {packageDefinition.betaVersion}
+            </p>
+            <p if:true={hasOtherVersions}>
+                {packageDefinition.versionCount} other versions published in
+                registry
+            </p>
+            <p if:false={hasOtherVersions}>
+                No other versions published in registry
+            </p>
+        </div>
+    </div>
+</template>

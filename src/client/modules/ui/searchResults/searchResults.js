@@ -6,6 +6,11 @@ export default class SearchResults extends LightningElement {
     @api searchTerm;
     @api results;
 
+    handlePackageClick(event) {
+        const { id } = event.target.dataset;
+        this.dispatchEvent(new CustomEvent('selectpackage', { detail: id }));
+    }
+
     handlePreviousPageClick() {
         if (this.results.pageNumber > 0) {
             const pageNumber = this.results.pageNumber - 1;

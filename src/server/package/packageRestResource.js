@@ -36,6 +36,28 @@ module.exports = class PackageRestResource {
         }
     }
 
+    async getPackageDefinition(req, res) {
+        if (!req.params.definitionId) {
+            res.statusMessage = 'Missing package definition ID parameter';
+            res.sendStatus(400);
+            return;
+        }
+        const { definitionId } = req.params;
+        try {
+            const packageDef = await this.packageService.getPackageDefinition(
+                definitionId
+            );
+            if (packageDef === null) {
+                res.sendStatus(404);
+            } else {
+                res.json(packageDef);
+            }
+        } catch (error) {
+            console.error(error);
+            res.sendStatus(500);
+        }
+    }
+
     async getPackageVersion(req, res) {
         if (!req.query.package_name) {
             res.statusMessage = 'Missing package name parameter';

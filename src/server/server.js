@@ -30,6 +30,9 @@ const packageRest = new PackageRestResource(pool);
 app.get('/api/v1/search', (req, res) => {
     packageRest.search(req, res);
 });
+app.get('/api/v1/package-definition/:definitionId', (req, res) => {
+    packageRest.getPackageDefinition(req, res);
+});
 app.get('/api/v1/package-version', (req, res) => {
     packageRest.getPackageVersion(req, res);
 });

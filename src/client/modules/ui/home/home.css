@@ -11,8 +11,9 @@ h3 {
 code {
     font-family: monospace;
     border-left: 3px solid var(--usafa-blue);
-    padding: 0.25rem 0.25rem 0.25rem 0.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
     margin-left: 2rem;
+    background-color: #f1f1f1;
 }
 
 a,
