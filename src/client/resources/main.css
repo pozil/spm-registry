@@ -5,11 +5,16 @@ html, body, #main {
 }
 
 body {
-  --royal-blue-dark: #00296bff;
-  --dark-cornflower-blue: #003f88ff;
-  --usafa-blue: #00509dff;
-  --mikado-yellow: #fdc500ff;
-  --cyber-yellow: #ffd500ff;
+  --true-blue: #0466c8ff;
+  --usafa-blue: #0353a4ff;
+  --dark-cornflower-blue: #023e7dff;
+  --oxford-blue: #002855ff;
+  --oxford-blue-2: #001845ff;
+  --oxford-blue-3: #001233ff;
+  --independence: #33415cff;
+  --black-coral: #5c677dff;
+  --roman-silver: #7d8597ff;
+  --manatee: #f1f1f1;
   
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;

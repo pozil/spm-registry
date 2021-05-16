@@ -3,3 +3,16 @@ footer {
     padding: 0.5rem;
     color: var(--usafa-blue);
 }
+
+h3 {
+    color: var(--oxford-blue-2);
+}
+
+a,
+a:visited {
+    color: var(--usafa-blue);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}

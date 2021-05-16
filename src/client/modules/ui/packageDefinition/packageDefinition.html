@@ -1,26 +1,32 @@
 <template>
     <h2>{packageDefinition.name}</h2>
     <div class="columns">
-        <div class="definition-info">
-            <p>Publisher: {packageDefinition.publisher}</p>
+        <div class="col-left">
+            <div>Publisher: {packageDefinition.publisher}</div>
             <h3>Description</h3>
-            <textarea readonly>{packageDefinition.description}</textarea>
+            <ui-description
+                value={packageDefinition.description}
+            ></ui-description>
+            <a href={appExchangeSearchUrl} target="_blank"
+                >Search on AppExchange</a
+            >
         </div>
-        <div class="version-info">
-            <p if:true={packageDefinition.stableVersion}>
-                Latest stable version in registry:
-                {packageDefinition.stableVersion}
-            </p>
-            <p if:true={packageDefinition.betaVersion}>
-                Latest beta version in registry: {packageDefinition.betaVersion}
-            </p>
-            <p if:true={hasOtherVersions}>
+        <div class="col-rigth">
+            <div if:true={packageDefinition.stableVersion} class="version-info">
+                <div>Latest stable version in registry:</div>
+                <div class="version">{packageDefinition.stableVersion}</div>
+            </div>
+            <div if:true={packageDefinition.betaVersion} class="version-info">
+                <div>Latest beta version in registry:</div>
+                <div class="version">{packageDefinition.betaVersion}</div>
+            </div>
+            <div if:true={hasOtherVersions}>
                 {packageDefinition.versionCount} other versions published in
                 registry
-            </p>
-            <p if:false={hasOtherVersions}>
+            </div>
+            <div if:false={hasOtherVersions}>
                 No other versions published in registry
-            </p>
+            </div>
         </div>
     </div>
 </template>

@@ -2,17 +2,30 @@
     display: flex;
 }
 
-.definition-info {
+.col-left {
     flex-grow: 1;
+    padding-right: 1rem;
 }
 
-textarea {
-    border: none;
-    width: 100%;
-    height: 10rem;
-    font: inherit;
-    padding: 0;
-    margin: 0;
-    resize: none;
-    outline: none;
+h2,
+h3 {
+    color: var(--oxford-blue-2);
+}
+
+a,
+a:visited {
+    color: var(--usafa-blue);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.version-info {
+    margin-bottom: 1rem;
+}
+
+.version {
+    font-size: 2rem;
+    color: var(--oxford-blue-2);
 }

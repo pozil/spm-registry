@@ -1,9 +1,14 @@
 header {
-    background-color: var(--cyber-yellow);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 2rem;
+    background: var(--oxford-blue);
+    background: linear-gradient(
+        34deg,
+        var(--oxford-blue) 15%,
+        var(--true-blue) 100%
+    );
 }
 
 .search-container {
@@ -12,9 +17,15 @@ header {
     justify-content: flex-end;
 }
 
+.search-container form {
+    display: flex;
+}
+
 .search-container input,
 .search-container button {
     font-size: 1rem;
+    border-radius: 0px;
+    border: 1px solid var(--dark-cornflower-blue);
 }
 
 .search-container input {
@@ -32,8 +43,12 @@ header {
     padding: 1rem 2rem;
 }
 
+.search-container button:hover {
+    background-color: var(--oxford-blue-3);
+}
+
 .title-container {
-    color: var(--royal-blue-dark);
+    color: #ffffff;
 }
 
 .title {
@@ -41,11 +56,13 @@ header {
     font-weight: bold;
     letter-spacing: 1rem;
     cursor: pointer;
+    color: inherit;
+    text-decoration: none;
 }
 
 .announcement-banner {
-    background-color: var(--usafa-blue);
+    background-color: var(--manatee);
     text-align: center;
-    color: var(--cyber-yellow);
+    color: var(--oxford-blue-3);
     padding: 0.5rem;
 }

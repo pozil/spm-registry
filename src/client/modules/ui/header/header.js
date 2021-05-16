@@ -3,7 +3,8 @@ import { LightningElement } from 'lwc';
 export default class Header extends LightningElement {
     searchTerm = null;
 
-    handleTitleClick() {
+    handleTitleClick(event) {
+        event.preventDefault();
         this.dispatchEvent(new CustomEvent('gohome'));
     }
 
