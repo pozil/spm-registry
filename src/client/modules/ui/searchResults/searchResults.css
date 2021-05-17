@@ -8,6 +8,10 @@ h3 {
     color: var(--oxford-blue-2);
 }
 
+td {
+    padding: 0.5rem;
+}
+
 a,
 a:visited {
     color: var(--usafa-blue);
