@@ -1,7 +1,7 @@
 # Salesforce Package Manager (SPM) Registry
 
-This repository contains the code for the SPM registry.<br/>
-Head over here for the [Salesforce CLI plugin]().
+This repository contains the code for the [SPM registry](https://spm-registry.herokuapp.com/).<br/>
+Head over here for the [SPM plugin for the Salesforce CLI](https://github.com/pozil/spm-plugin).
 
 ## Setup
 
