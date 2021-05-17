@@ -10,12 +10,6 @@ export default class App extends LightningElement {
     searchResults = [];
     packageDefinition;
 
-    connectedCallback() {
-        // Select package definition id=14
-        const fakeEvent = { detail: 14 };
-        this.handleSelectPackage(fakeEvent);
-    }
-
     async handleSearch(event) {
         const { key, page } = event.detail;
         try {

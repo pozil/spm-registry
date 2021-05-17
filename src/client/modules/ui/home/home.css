@@ -4,6 +4,17 @@
     flex-flow: column;
 }
 
+h2 {
+    font-weight: normal;
+    text-align: center;
+    line-height: 2.5rem;
+    color: var(--dark-cornflower-blue);
+    background: #ffffff;
+    background: radial-gradient(circle, #ffffff 35%, var(--true-blue) 100%);
+    margin: -2rem -2rem 1rem -2rem;
+    padding: 3rem;
+}
+
 h3 {
     margin-top: 3rem;
 }
