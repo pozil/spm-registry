@@ -1,7 +1,19 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, api } from 'lwc';
 
 export default class Header extends LightningElement {
-    searchTerm = null;
+    @api
+    get searchTerm() {
+        return this._searchTerm;
+    }
+    set searchTerm(value) {
+        this._searchTerm = value;
+        const searchInputEl = this.template.querySelector(
+            'input[name="searchTerm"]'
+        );
+        if (searchInputEl) {
+            searchInputEl.value = value;
+        }
+    }
 
     handleTitleClick(event) {
         event.preventDefault();
@@ -9,13 +21,13 @@ export default class Header extends LightningElement {
     }
 
     handleSearchTermInput(event) {
-        this.searchTerm = event.target.value;
+        this._searchTerm = event.target.value;
     }
 
     handleSearchSubmit(event) {
         event.preventDefault();
-        if (this.searchTerm && this.searchTerm.trim() !== '') {
-            const detail = { key: this.searchTerm, page: 0 };
+        if (this._searchTerm && this._searchTerm.trim() !== '') {
+            const detail = { key: this._searchTerm, page: 0 };
             this.dispatchEvent(new CustomEvent('search', { detail }));
         }
     }

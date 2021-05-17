@@ -6,7 +6,7 @@ const PAGE_PACKAGE_DEFINITION = 'package-definition';
 
 export default class App extends LightningElement {
     page = PAGE_HOME;
-    searchTerm;
+    searchTerm = null;
     searchResults = [];
     packageDefinition;
 
@@ -49,6 +49,7 @@ export default class App extends LightningElement {
 
     handleGoHome() {
         this.page = PAGE_HOME;
+        this.searchTerm = null;
     }
 
     get isHomePage() {

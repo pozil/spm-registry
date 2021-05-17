@@ -1,5 +1,9 @@
 <template>
-    <ui-header ongohome={handleGoHome} onsearch={handleSearch}></ui-header>
+    <ui-header
+        ongohome={handleGoHome}
+        onsearch={handleSearch}
+        search-term={searchTerm}
+    ></ui-header>
     <section>
         <template if:true={isHomePage}>
             <ui-home></ui-home>

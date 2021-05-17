@@ -7,7 +7,9 @@
         <div class="search-container">
             <form onsubmit={handleSearchSubmit}>
                 <input
-                    value={searchTerm}
+                    name="searchTerm"
+                    type="text"
+                    value={_searchTerm}
                     oninput={handleSearchTermInput}
                     placeholder="Search packages"
                 />
