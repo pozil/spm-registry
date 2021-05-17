@@ -8,14 +8,6 @@ h3 {
     margin-top: 3rem;
 }
 
-code {
-    font-family: monospace;
-    border-left: 3px solid var(--usafa-blue);
-    padding: 0.5rem 0.5rem 0.5rem 1rem;
-    margin-left: 2rem;
-    background-color: var(--manatee);
-}
-
 a,
 a:visited {
     color: var(--usafa-blue);
