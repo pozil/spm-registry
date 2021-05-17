@@ -46,9 +46,8 @@ class PackageInfoParser {
 
         // Parse package information
         const packageInfo = await page.evaluate(() => {
-            const packageInfoElements = document.querySelectorAll(
-                '#pkgInfo .infotext'
-            );
+            const packageInfoElements =
+                document.querySelectorAll('#pkgInfo .infotext');
             const info = {
                 name: packageInfoElements[0].textContent,
                 publisher: packageInfoElements[1].textContent,

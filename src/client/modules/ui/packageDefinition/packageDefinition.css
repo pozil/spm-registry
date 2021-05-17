@@ -1,0 +1,31 @@
+.columns {
+    display: flex;
+}
+
+.col-left {
+    flex-grow: 1;
+    padding-right: 1rem;
+}
+
+h2,
+h3 {
+    color: var(--oxford-blue-2);
+}
+
+a,
+a:visited {
+    color: var(--usafa-blue);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.version-info {
+    margin-bottom: 1rem;
+}
+
+.version {
+    font-size: 2rem;
+    color: var(--oxford-blue-2);
+}

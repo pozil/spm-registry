@@ -1,0 +1,22 @@
+<template>
+    <h2>
+        Welcome to the Salesforce Package Manager (SPM)<br />
+        The resource that lets you quickly find and install Salesforce packages
+    </h2>
+    <h3>
+        Install and use the&nbsp;
+        <a href="https://github.com/pozil/spm-plugin" rel="noopener"
+            >SPM plugin</a
+        >
+        for the Salesforce CLI
+    </h3>
+    <ui-command>sfdx plugins:install spm-plugin</ui-command>
+
+    <h3>
+        Example 1: Install the latest version of the Streaming Monitor package
+    </h3>
+    <ui-command>sfdx spm:install -n 'Streaming Monitor'</ui-command>
+
+    <h3>Example 2: Publish a package to the registry</h3>
+    <ui-command>sfdx spm:publish -v 04tXXXXXXXXXXXX</ui-command>
+</template>

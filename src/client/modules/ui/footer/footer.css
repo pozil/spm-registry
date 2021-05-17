@@ -1,0 +1,15 @@
+footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    border-top: 1px solid var(--roman-silver);
+}
+
+a,
+a:visited {
+    color: var(--usafa-blue);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}

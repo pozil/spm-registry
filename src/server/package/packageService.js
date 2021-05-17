@@ -1,8 +1,104 @@
 const { Version } = require('../utils/version');
 
+const PAGE_SIZE = 2;
+
 class PackageService {
     constructor(pool) {
         this.pool = pool;
+    }
+
+    /**
+     * Search for packages
+     * @param {string} searchTerm
+     * @param {number} pageNumber
+     * @returns paginated list of packages as { packages: [], totalCount: number, pageNumber: number }
+     */
+    async search(rawSearchTerm, pageNumber) {
+        const searchTerm = `%${rawSearchTerm.replace('%', '')}%`;
+        const offset = pageNumber * PAGE_SIZE;
+        const client = await this.pool.connect();
+
+        try {
+            // Search for packages
+            const dbRowResult = await client.query(
+                `SELECT pd.id, pd.name, pd.publisher, pd.description 
+FROM package_definitions pd 
+WHERE pd.name ILIKE $1 OR pd.publisher ILIKE $1 
+ORDER BY pd.name 
+LIMIT $2 OFFSET $3`,
+                [searchTerm, PAGE_SIZE, offset]
+            );
+
+            // Prepare results
+            const paginatedResults = {
+                packages: dbRowResult.rows,
+                totalCount: dbRowResult.rowCount,
+                pageNumber
+            };
+
+            // Count other packages if results exceed page size
+            if (pageNumber > 0 || dbRowResult.rowCount == PAGE_SIZE) {
+                const dbCountResult = await client.query(
+                    `SELECT COUNT(*) as rowcount
+FROM package_definitions pd 
+WHERE pd.name ILIKE $1 OR pd.publisher ILIKE $1`,
+                    [searchTerm]
+                );
+                paginatedResults.totalCount = dbCountResult.rows[0].rowcount;
+            }
+
+            return paginatedResults;
+        } finally {
+            client.release();
+        }
+    }
+
+    /**
+     * Retrieves a package definition
+     * @param {number} packageDefinitionId
+     * @returns package definition or null if not found
+     */
+    async getPackageDefinition(packageDefinitionId) {
+        const client = await this.pool.connect();
+        try {
+            const dbDefResult = await client.query(
+                `SELECT pd.id, pd.name, pd.publisher, pd.description, pd.latest_stable_version_id, pd.latest_beta_version_id
+FROM package_definitions pd
+WHERE pd.id = $1`,
+                [packageDefinitionId]
+            );
+            if (dbDefResult.rowCount === 0) {
+                return null;
+            }
+            const packageDef = dbDefResult.rows[0];
+            // Get latest versions
+            packageDef.betaVersion = (
+                await this.getPackageVersion(
+                    client,
+                    packageDef.latest_beta_version_id
+                )
+            )?.toString();
+            packageDef.stableVersion = (
+                await this.getPackageVersion(
+                    client,
+                    packageDef.latest_stable_version_id
+                )
+            )?.toString();
+            // Count versions
+            const dbCountResult = await client.query(
+                `SELECT COUNT(*) as versioncount
+FROM package_versions pv
+WHERE pv.package_definition_id = $1`,
+                [packageDefinitionId]
+            );
+            packageDef.versionCount = parseInt(
+                dbCountResult.rows[0].versioncount,
+                10
+            );
+            return packageDef;
+        } finally {
+            client.release();
+        }
     }
 
     /**

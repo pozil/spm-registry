@@ -1,0 +1,45 @@
+<template>
+    <template if:true={hasResults}>
+        <h3>{resultStatsLabel}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Publisher</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={results.packages} for:item="pkg">
+                    <tr key={pkg.id}>
+                        <td>
+                            <a
+                                href="#"
+                                onclick={handlePackageClick}
+                                data-id={pkg.id}
+                                >{pkg.name}</a
+                            >
+                        </td>
+                        <td>{pkg.description}</td>
+                        <td>{pkg.publisher}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </template>
+
+    <template if:false={hasResults}>
+        <h3>
+            No result found for <strong>'{searchTerm}'</strong> in SPM registry.
+        </h3>
+        <p>
+            If you know the version ID of the package you're looking for, please
+            contribute and publish it to the SPM registry:
+        </p>
+        <code>sfdx spm:publish -v 04tXXXXXXXXXXXX</code>
+        <p>
+            You do not need to be the package owner in order to publish it to
+            the registry.
+        </p>
+    </template>
+</template>

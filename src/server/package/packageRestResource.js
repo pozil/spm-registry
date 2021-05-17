@@ -8,6 +8,56 @@ module.exports = class PackageRestResource {
         this.packageService = new PackageService(pool);
     }
 
+    async search(req, res) {
+        if (!req.query.key) {
+            res.statusMessage = 'Missing search parameter';
+            res.sendStatus(400);
+            return;
+        }
+        const { key } = req.query;
+        let page = 0;
+        if (req.query.page) {
+            try {
+                page = parseInt(req.query.page, 10);
+            } catch (e) {
+                res.statusMessage = 'Invalid page parameter';
+                res.sendStatus(400);
+                return;
+            }
+        }
+
+        try {
+            const results = await this.packageService.search(key, page);
+            // Return results
+            res.json(results);
+        } catch (error) {
+            console.error(error);
+            res.sendStatus(500);
+        }
+    }
+
+    async getPackageDefinition(req, res) {
+        if (!req.params.definitionId) {
+            res.statusMessage = 'Missing package definition ID parameter';
+            res.sendStatus(400);
+            return;
+        }
+        const { definitionId } = req.params;
+        try {
+            const packageDef = await this.packageService.getPackageDefinition(
+                definitionId
+            );
+            if (packageDef === null) {
+                res.sendStatus(404);
+            } else {
+                res.json(packageDef);
+            }
+        } catch (error) {
+            console.error(error);
+            res.sendStatus(500);
+        }
+    }
+
     async getPackageVersion(req, res) {
         if (!req.query.package_name) {
             res.statusMessage = 'Missing package name parameter';
@@ -28,14 +78,16 @@ module.exports = class PackageRestResource {
                 );
             } else if (shouldIncludeBeta) {
                 // Latest beta
-                packageVersion = await this.packageService.findLatestBetaPackageVersion(
-                    package_name
-                );
+                packageVersion =
+                    await this.packageService.findLatestBetaPackageVersion(
+                        package_name
+                    );
             } else {
                 // Latest stable
-                packageVersion = await this.packageService.findLatestStablePackageVersion(
-                    package_name
-                );
+                packageVersion =
+                    await this.packageService.findLatestStablePackageVersion(
+                        package_name
+                    );
             }
             // Save & hide internal package version id
             let packageVersionId;
