@@ -4,9 +4,7 @@
         <div class="col-left">
             <div>Publisher: {packageDefinition.publisher}</div>
             <h3>Description</h3>
-            <p if:false={packageDefinition.description}>Not provided.</p>
             <ui-description
-                if:true={packageDefinition.description}
                 value={packageDefinition.description}
             ></ui-description>
             <a href={appExchangeSearchUrl} target="_blank" rel="noopener"

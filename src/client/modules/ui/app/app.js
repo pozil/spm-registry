@@ -16,7 +16,13 @@ export default class App extends LightningElement {
             const response = await fetch(
                 `/api/v1/search?key=${key}&page=${page}`
             );
-            this.searchResults = await response.json();
+            const results = await response.json();
+            this.searchResults = results.map((result) => {
+                if (!result.description) {
+                    result.description = 'Not provided.';
+                }
+                return result;
+            });
             this.page = PAGE_SEARCH_RESULTS;
             this.searchTerm = key;
         } catch (e) {
@@ -31,6 +37,9 @@ export default class App extends LightningElement {
                 `/api/v1/package-definition/${packageDefinitionId}`
             );
             this.packageDefinition = await response.json();
+            if (!this.packageDefinition.description) {
+                this.packageDefinition.description = 'Not provided.';
+            }
             this.page = PAGE_PACKAGE_DEFINITION;
         } catch (e) {
             console.error('Failed to search', e);
