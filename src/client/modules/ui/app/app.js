@@ -17,12 +17,13 @@ export default class App extends LightningElement {
                 `/api/v1/search?key=${key}&page=${page}`
             );
             const results = await response.json();
-            this.searchResults = results.map((result) => {
+            results.packages = results.packages.map((result) => {
                 if (!result.description) {
                     result.description = 'Not provided.';
                 }
                 return result;
             });
+            this.searchResults = results;
             this.page = PAGE_SEARCH_RESULTS;
             this.searchTerm = key;
         } catch (e) {
