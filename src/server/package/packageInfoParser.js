@@ -6,26 +6,58 @@ class PackageInfoParser {
         const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
         const page = await browser.newPage();
 
-        // Log In
-        await page.goto(Configuration.getSfLoginUrl(), {
-            waitUntil: 'networkidle2'
-        });
-        await page.focus('#username');
-        await page.keyboard.type(Configuration.getSfUsername());
-        await page.focus('#password');
-        await page.keyboard.type(Configuration.getSfPassword());
-        await page.waitForSelector('#Login');
-        await page.click('#Login');
-        await page.waitForRequest(
-            `${Configuration.getSfLoginUrl()}/lightning/setup/SetupOneHome/home`
-        );
+        // Open login page
+        try {
+            await page.goto(Configuration.getSfLoginUrl(), {
+                waitUntil: 'networkidle2'
+            });
+        } catch (e) {
+            const newErr = new Error('An error occured during login page load');
+            newErr.stack += '\nCaused by: ' + e.stack;
+            throw newErr;
+        }
+
+        // Fill login form
+        try {
+            await page.focus('#username');
+            await page.keyboard.type(Configuration.getSfUsername());
+            await page.focus('#password');
+            await page.keyboard.type(Configuration.getSfPassword());
+            await page.waitForSelector('#Login');
+            await page.click('#Login');
+        } catch (e) {
+            const newErr = new Error(
+                'An error occured during login form interaction'
+            );
+            newErr.stack += '\nCaused by: ' + e.stack;
+            throw newErr;
+        }
+
+        // Setup page load
+        try {
+            await page.waitForRequest(
+                `${Configuration.getSfLoginUrl()}/lightning/setup/SetupOneHome/home`
+            );
+        } catch (e) {
+            const newErr = new Error('An error occured during setup page load');
+            newErr.stack += '\nCaused by: ' + e.stack;
+            throw newErr;
+        }
 
         // Navigate to package install URL
-        await page.goto(
-            `${Configuration.getSfLoginUrl()}/packagingSetupUI/ipLanding.app?apvId=${packageId}`,
-            { waitUntil: 'networkidle2' }
-        );
-        await page.waitForSelector('#pkgInfo');
+        try {
+            await page.goto(
+                `${Configuration.getSfLoginUrl()}/packagingSetupUI/ipLanding.app?apvId=${packageId}`,
+                { waitUntil: 'networkidle2' }
+            );
+            await page.waitForSelector('#pkgInfo');
+        } catch (e) {
+            const newErr = new Error(
+                'An error occured during package install page load'
+            );
+            newErr.stack += '\nCaused by: ' + e.stack;
+            throw newErr;
+        }
 
         // Check for errors
         const errors = await page.evaluate(() => {
