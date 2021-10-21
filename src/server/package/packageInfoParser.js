@@ -95,6 +95,7 @@ class PackageInfoParser {
         });
         await browser.close();
         packageInfo.id = packageId;
+        console.log('Parsed package info: ', JSON.stringify(packageInfo));
         return packageInfo;
     }
 }
