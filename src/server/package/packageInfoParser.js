@@ -84,7 +84,9 @@ class PackageInfoParser {
             // Clean version number
             let versionNumber = packageInfoElements[3].textContent;
             if (versionNumber.endsWith('Release Notes')) {
-                versionNumber.substring(0, versionNumber.length - 13).trim();
+                versionNumber = versionNumber
+                    .substring(0, versionNumber.length - 13)
+                    .trim();
             }
 
             const info = {
