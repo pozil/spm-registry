@@ -80,11 +80,18 @@ class PackageInfoParser {
         const packageInfo = await page.evaluate(() => {
             const packageInfoElements =
                 document.querySelectorAll('#pkgInfo .infotext');
+
+            // Clean version number
+            let versionNumber = packageInfoElements[3].textContent;
+            if (versionNumber.endsWith('Release Notes')) {
+                versionNumber.substring(0, versionNumber.length - 13).trim();
+            }
+
             const info = {
                 name: packageInfoElements[0].textContent,
                 publisher: packageInfoElements[1].textContent,
                 versionName: packageInfoElements[2].textContent,
-                versionNumber: packageInfoElements[3].textContent,
+                versionNumber,
                 description: ''
             };
             // Add description if available
