@@ -1,6 +1,6 @@
 # Salesforce Package Manager (SPM) Registry
 
-**⚠️ The registry service will be discontinued on Nov 1st 2022 ⚠️**
+**⚠️ The registry service was discontinued on Nov 1st 2022 ⚠️**
 
 This repository contains the code for the [SPM registry](https://spm-registry.herokuapp.com/).<br/>
 Head over here for the [SPM plugin for the Salesforce CLI](https://github.com/pozil/spm-plugin).
